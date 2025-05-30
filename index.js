@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import { sendSaleNotification } from './message-handler.js';
 import { processWebhookData } from './candymachine-monitor.js';
+import axios from 'axios'; // Add this dependency
 
 dotenv.config();
 
@@ -62,10 +63,24 @@ app.get('/health', (req, res) => {
   res.status(200).send('Bot is running');
 });
 
+// Keep-alive function
+async function keepAlive() {
+  try {
+    await axios.get('https://tgbot-1-680u.onrender.com/health');
+    console.log('✅ Keep-alive ping sent');
+  } catch (error) {
+    console.error('❌ Keep-alive ping failed:', error.message);
+  }
+}
+
+// Schedule keep-alive every 10 minutes
+setInterval(keepAlive, 10 * 60 * 1000); // 10 minutes in milliseconds
+
 // Start Express server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🤖 Blinky NFT Bot started on port ${PORT}!`);
   console.log(`📢 Monitoring ${chatIds.length} groups`);
   console.log(`🍭 Candymachine: ${process.env.CANDYMACHINE_ADDRESS}`);
+  keepAlive(); // Initial ping
 });
