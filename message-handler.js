@@ -1,7 +1,7 @@
 export async function sendSaleNotification(bot, chatId, saleData) {
   const videoUrl = process.env.CELEBRATION_VIDEO_URL || 'https://gateway.irys.xyz/NGY5Uo_lDb4F4PBHoMN8WsYwh0A6n7FMElVJh6P9mL4?ext=mp4';
 
-  const message = `🎉 *BLINKY NFT BUY DETECTED!*
+  const message = `🎉 *BLINKY NFT MINT! 👀👀👀*
 
 💎 *NFT Sold!*
 🔥 Mint: \`${saleData.mint}\`
