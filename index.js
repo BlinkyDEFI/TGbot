@@ -73,8 +73,8 @@ async function keepAlive() {
   }
 }
 
-// Schedule keep-alive every 10 minutes
-setInterval(keepAlive, 10 * 60 * 1000); // 10 minutes in milliseconds
+// Schedule keep-alive every 5 minutes
+setInterval(keepAlive, 5 * 60 * 1000); // 5 minutes in milliseconds
 
 // Start Express server
 const PORT = process.env.PORT || 3000;
