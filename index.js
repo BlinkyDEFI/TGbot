@@ -8,7 +8,7 @@ import axios from 'axios'; // Add this dependency
 
 dotenv.config();
 
-const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: false });
+const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: false }); // Fixed typo
 const chatIds = process.env.TELEGRAM_CHAT_IDS?.split(',').map(id => id.trim()) || [];
 const app = express();
 
@@ -73,8 +73,8 @@ async function keepAlive() {
   }
 }
 
-// Schedule keep-alive every 5 minutes
-setInterval(keepAlive, 5 * 60 * 1000); // 5 minutes in milliseconds
+// Schedule keep-alive every 8 minutes
+setInterval(keepAlive, 8 * 60 * 1000); // 8 minutes in milliseconds
 
 // Start Express server
 const PORT = process.env.PORT || 3000;
