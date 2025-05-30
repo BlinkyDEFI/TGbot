@@ -11,8 +11,8 @@ export async function processWebhookData(webhookData) {
     const mint = mintAddress.slice(0, 8) + '...';
 
     // Verify it's an NFT_SALE for the candy machine
-    if (tx.type === 'NFT_SALE' && tx.accountData?.some(account => account.account === process.env.CANDYMACHINE_ADDRESS)) {
-      console.log('🎉 NFT sale detected:', tx.signature);
+    if (tx.type === 'NFT_MINT' && tx.accountData?.some(account => account.account === process.env.CANDYMACHINE_ADDRESS)) {
+      console.log('🎉 NFT mint detected:', tx.signature);
       return {
         signature: tx.signature,
         mint: mint || 'N/A',
